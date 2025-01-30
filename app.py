@@ -2,9 +2,14 @@ import streamlit as st
 import pickle
 import pandas as pd
 import requests
+from dotenv import load_dotenv
+load_dotenv()
+import os
+
+apikey = os.environ.get("apikey")
 
 def fetch_posters(movie_id):
-    url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key=7fa674895c673b9261e2f1b7c55237b3"
+    url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={apikey}"
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
